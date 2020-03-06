@@ -1,13 +1,22 @@
 package com.example.planner_sample.model;
 
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+@Data
 @Entity
-@Table(name = "users", schema="public")
+@Table(name = "users")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "login")
@@ -16,48 +25,13 @@ public class User {
     @Column(name = "password")
     private String password;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "role_id")
     private Role role;
-
-    public User() {
-    }
 
     public User(String login, String password, Role role) {
         this.login = login;
         this.password = password;
-        this.role = role;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public Role getRole() {
-        return role;
-    }
-
-    public void setRole(Role role) {
         this.role = role;
     }
 }
