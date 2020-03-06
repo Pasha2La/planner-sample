@@ -6,9 +6,7 @@ import com.example.planner_sample.service.WorkService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
+import javax.transaction.Transactional;
 
 @Service
 public class WorkServiceImpl implements WorkService {
@@ -21,8 +19,19 @@ public class WorkServiceImpl implements WorkService {
     }
 
     @Override
-    public Set<Work> getAll() {
-        return StreamSupport.stream(repository.findAll().spliterator(), false)
-                            .collect(Collectors.toSet());
+    public Iterable<Work> getAll() {
+        return repository.findAll();
+    }
+
+    @Override
+    @Transactional
+    public Work save(Work work) {
+        return repository.save(work);
+    }
+
+    @Override
+    @Transactional
+    public void delete(Work work) {
+        repository.delete(work);
     }
 }

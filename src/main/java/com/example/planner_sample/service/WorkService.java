@@ -2,8 +2,10 @@ package com.example.planner_sample.service;
 
 import com.example.planner_sample.model.Work;
 
-import java.util.Set;
-
 public interface WorkService {
-    Set<Work> getAll();
+    Iterable<Work> getAll();
+
+    Work save(Work work);
+
+    void delete(Work work);
 }

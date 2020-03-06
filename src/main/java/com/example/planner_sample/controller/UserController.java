@@ -5,10 +5,8 @@ import com.example.planner_sample.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
-@RequestMapping("/RSUser")
+@RequestMapping("/User")
 public class UserController {
 
     private final UserService userService;
@@ -19,7 +17,7 @@ public class UserController {
     }
 
     @GetMapping("/getAll")
-    public List<User> getAll() {
+    public Iterable<User> getAll() {
         return userService.getAll();
     }
 
