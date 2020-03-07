@@ -24,6 +24,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User getById(Long id) {
+        return repository.findById(id).orElse(null);
+    }
+
+    @Override
     @Transactional
     public User save(User user) {
         return repository.save(user);

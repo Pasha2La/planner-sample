@@ -20,4 +20,9 @@ public class RoleServiceImpl implements RoleService {
     public Iterable<Role> getAll() {
         return repository.findAll();
     }
+
+    @Override
+    public Role getById(Long id) {
+        return repository.findById(id).orElse(null);
+    }
 }

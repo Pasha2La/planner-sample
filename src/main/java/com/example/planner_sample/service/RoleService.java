@@ -4,4 +4,6 @@ import com.example.planner_sample.model.Role;
 
 public interface RoleService {
     Iterable<Role> getAll();
+
+    Role getById(Long id);
 }
