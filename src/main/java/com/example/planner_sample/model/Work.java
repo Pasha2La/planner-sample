@@ -33,6 +33,7 @@ public class Work {
     @Column(name = "expire_date")
     private Date expireDate;
 
+    @Embedded
     @OneToMany(mappedBy = "work", cascade = CascadeType.ALL)
     private Set<Task> tasks;
 

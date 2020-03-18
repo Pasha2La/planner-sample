@@ -1,35 +1,47 @@
+drop table if exists roles
 create table roles (
-    id serial primary key,
-    role_name varchar(50) not null
+    id serial,
+    role_name varchar(50) not null,
+    primary key (id)
 );
 
+drop table if exists users
 create table users (
-    id serial primary key,
-    role_id serial references roles(id),
+    id serial,
+    role_id serial,
     login varchar(50) not null,
-    password varchar(50) not null
+    password varchar(50) not null,
+    primary key (id),
+    foreign key (role_id) references roles(id)
 );
 
+drop table if exists works
 create table works (
-    id serial primary key,
+    id serial,
     work_name varchar(50) not null,
     status varchar(50) not null,
     start_date date,
-    expire_date date
+    expire_date date,
+    primary key (id)
 );
 
+drop table if exists tasks
 create table tasks (
-    id serial primary key,
+    id serial,
     task_name varchar(50) not null,
-    work_id serial references works(id)
+    work_id serial,
+    primary key (id),
+    foreign key (work_id) references tasks(id) on delete cascade
 );
 
+drop table if exists time_costs
 create table time_costs (
-    id serial primary key,
+    id serial,
     user_id serial references users(id),
     task_id serial references tasks(id),
     day date not null,
-    time_spent integer not null
+    time_spent integer not null,
+    primary key (id)
 );
 
 insert into roles (role_name) values ('test_role');

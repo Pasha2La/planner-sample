@@ -12,6 +12,7 @@ import javax.persistence.*;
 @Builder
 @Data
 @Entity
+@Embeddable
 @Table(name = "tasks", schema = "public")
 public class Task {
 
